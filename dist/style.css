@@ -28,6 +28,7 @@
 
 .dayparts tr:first-child th {
     text-align: left;
+    text-indent: -4px;
 }
 
 .dayparts tr:not(:first-child) th {

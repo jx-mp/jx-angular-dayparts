@@ -14,7 +14,6 @@ angular.module('angular-dayparts', [])
             var isDragging = false;
             var selected = [];
             var isStartSelected = false;
-            var selectedForAPI = [];
             $scope.days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
             $scope.hours = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
 
@@ -28,70 +27,14 @@ angular.module('angular-dayparts', [])
                     return;
                 }
                 isDragging = false;
-                dataForAPI();
                 onChangeCallback();
             }
 
 
             function onChangeCallback () {
                 if ($scope.options && $scope.options.onChange) {
-                    $scope.options.onChange(selectedForAPI);
+                    $scope.options.onChange(selected);
                 }
-            }
-
-
-            function dataForAPI () {
-                var newSelected = selected.map(function(item){
-                    var a = item.split('-');
-                    return {
-                        day: a[0],
-                        hour: parseInt(a[1])
-                    };
-                });
-
-                selectedForAPI = [];
-
-                newSelected = _.sortBy(( _.sortBy(newSelected, 'hour')), 'day');
-
-                newSelected.forEach(function(item){
-
-                    if (!_.contains(_.pluck(selectedForAPI, 'day'), item.day)) {
-                        var b = {
-                            day: item.day,
-                            start_hour: item.hour,
-                            end_hour: item.hour + 1
-                        };
-                        selectedForAPI.push(b);
-                    } else {
-
-                        var days = _.where(selectedForAPI, {day: item.day});
-                        var push = false;
-
-                        days.forEach(function (day) {
-                            // Check if consecutive
-                            if (day.start_hour - 1 === item.hour || day.end_hour + 1 === item.hour + 1) {
-                                push = false;
-                                if (day.start_hour > item.hour) {
-                                    day.start_hour = item.hour;
-                                }
-                                if (day.end_hour < item.hour + 1) {
-                                    day.end_hour = item.hour + 1;
-                                }
-                            } else {
-                                push = true;
-                            }
-                        });
-
-                        if (push) {
-                            var b = {
-                                day: item.day,
-                                start_hour: item.hour,
-                                end_hour: item.hour + 1
-                            };
-                            selectedForAPI.push(b);
-                        }
-                    }
-                });
             }
 
 
@@ -166,7 +109,6 @@ angular.module('angular-dayparts', [])
 
             $scope.reset = function () {
                 selected = [];
-                selectedForAPI = [];
                 $element.find('td').each(function(i, el){
                     $(el).removeClass(klass);
                 });
