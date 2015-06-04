@@ -1,0 +1,48 @@
+.dayparts {
+    width: 750px;
+}
+
+.dayparts table {
+    width: 100%;
+}
+
+.dayparts td {
+    cursor: pointer;
+    width: 26px;
+    height: 26px;
+    border: 1px solid #ccc;
+}
+
+.dayparts th {
+    font-weight: normal;
+}
+
+.dayparts td, .dayparts th {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.dayparts tr:first-child th {
+    text-align: left;
+}
+
+.dayparts tr:not(:first-child) th {
+    text-align: right;
+    padding-right: 5px;
+}
+
+
+.dayparts .selected {
+    background: #1e4163;
+    color: white;
+}
+
+.dayparts button {
+    margin-top: 10px;
+    float: right;
+    cursor: pointer;
+}
