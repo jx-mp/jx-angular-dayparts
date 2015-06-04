@@ -5,7 +5,7 @@ angular.module('angular-dayparts', [])
         scope: {
             options: '=?'
         },
-        templateUrl: '/src/template.html',
+        templateUrl: 'template.html',
         controller: function($scope, $element, $attrs) {
 
 

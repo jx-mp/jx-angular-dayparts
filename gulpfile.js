@@ -7,14 +7,14 @@ var del = require('del');
 gulp.task('html2js', function() {
     gulp.src("./src/template.html")
         .pipe(ngHtml2Js({
-            moduleName: "Template"
+            moduleName: "angular-dayparts"
         }))
         .pipe(gulp.dest("./dist"));
 });
 
 
 gulp.task('concat', function() {
-    gulp.src(['./dist/template.js', './src/angular-dayparts.js'])
+    gulp.src(['./src/angular-dayparts.js', './dist/template.js'])
         .pipe(concat('angular-dayparts.js'))
         .pipe(gulp.dest('./dist/'));
 });

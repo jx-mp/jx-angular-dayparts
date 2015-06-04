@@ -1,30 +1,3 @@
-(function(module) {
-try {
-  module = angular.module('Template');
-} catch (e) {
-  module = angular.module('Template', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('template.html',
-    '<div class="dayparts">\n' +
-    '\n' +
-    '    <table border="0" cellspacing="0" cellpadding="0">\n' +
-    '        <tr>\n' +
-    '            <th></th>\n' +
-    '            <th ng-repeat="hour in hours"><span ng-show="hour !== 0">{{hour}}</span></th>\n' +
-    '        </tr>\n' +
-    '        <tr ng-repeat="day in days">\n' +
-    '            <th>{{day}}</th>\n' +
-    '            <td ng-repeat="hour in hours" data-time="{{day}}-{{hour}}"></td>\n' +
-    '        </tr>\n' +
-    '    </table>\n' +
-    '\n' +
-    '    <button type="button" ng-click="reset()" ng-if="options.reset">Reset</button>\n' +
-    '\n' +
-    '</div>');
-}]);
-})();
-
 angular.module('angular-dayparts', [])
 .directive('angularDayparts', ['$window', '$document', function ($window, $document) {
     return {
@@ -32,7 +5,7 @@ angular.module('angular-dayparts', [])
         scope: {
             options: '=?'
         },
-        templateUrl: '/src/template.html',
+        templateUrl: 'template.html',
         controller: function($scope, $element, $attrs) {
 
 
@@ -159,3 +132,30 @@ angular.module('angular-dayparts', [])
         }
     }
 }]);
+
+(function(module) {
+try {
+  module = angular.module('angular-dayparts');
+} catch (e) {
+  module = angular.module('angular-dayparts', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('template.html',
+    '<div class="dayparts">\n' +
+    '\n' +
+    '    <table border="0" cellspacing="0" cellpadding="0">\n' +
+    '        <tr>\n' +
+    '            <th></th>\n' +
+    '            <th ng-repeat="hour in hours"><span ng-show="hour !== 0">{{hour}}</span></th>\n' +
+    '        </tr>\n' +
+    '        <tr ng-repeat="day in days">\n' +
+    '            <th>{{day}}</th>\n' +
+    '            <td ng-repeat="hour in hours" data-time="{{day}}-{{hour}}"></td>\n' +
+    '        </tr>\n' +
+    '    </table>\n' +
+    '\n' +
+    '    <button type="button" ng-click="reset()" ng-if="options.reset">Reset</button>\n' +
+    '\n' +
+    '</div>');
+}]);
+})();

@@ -1,6 +1,6 @@
 {
   "name": "angular-dayparts",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Angular directive for select hours in a week",
   "main": "gulpfile.js",
   "dependencies": {
