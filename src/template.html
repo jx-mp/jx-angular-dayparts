@@ -1,0 +1,16 @@
+<div class="dayparts">
+
+    <table border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <th></th>
+            <th ng-repeat="hour in hours">{{hour}}</th>
+        </tr>
+        <tr ng-repeat="day in days">
+            <th>{{day}}</th>
+            <td ng-repeat="hour in hours" data-time="{{day}}-{{hour}}"></td>
+        </tr>
+    </table>
+
+    <button type="button" ng-click="reset()" ng-if="options.reset">Reset</button>
+
+</div>
