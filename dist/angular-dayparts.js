@@ -8,18 +8,17 @@ angular.module('angular-dayparts', [])
         templateUrl: 'template.html',
         controller: function($scope, $element, $attrs) {
 
+            $scope.options = $scope.options || {};
+            $scope.options.reset = ($scope.options.reset === undefined) ? true : $scope.options.reset;
+
+            $scope.days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+            $scope.hours = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
 
             var klass = 'selected';
             var startCell = null;
             var isDragging = false;
             var selected = [];
             var isStartSelected = false;
-            $scope.days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
-            $scope.hours = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
-
-            if (!$scope.options.reset === undefined) {
-                $scope.options.reset = true;
-            }
 
 
             function mouseUp(el) {
