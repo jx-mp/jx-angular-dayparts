@@ -2,7 +2,7 @@
 
 Angular directive for select hours in a week
 
-Based on [this StackOverflow answer](http://stackoverflow.com/questions/23163952/how-do-i-capture-table-td-elements-using-mousedown-dragselect-event)
+Code based on [this StackOverflow answer](http://stackoverflow.com/questions/23163952/how-do-i-capture-table-td-elements-using-mousedown-dragselect-event)
 
 
 ![Sample](sample.jpg)
@@ -32,3 +32,8 @@ Call the directive from your page
 ```html
 <angular-dayparts options="options"></angular-dayparts>
 ```
+
+
+## License
+
+Released under the terms of MIT License.

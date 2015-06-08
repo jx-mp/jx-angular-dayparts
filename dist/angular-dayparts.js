@@ -1,5 +1,5 @@
 angular.module('angular-dayparts', [])
-.directive('angularDayparts', ['$window', '$document', function ($window, $document) {
+.directive('angularDayparts', ['$window', '$document', '$timeout', function ($window, $document, $timeout) {
     return {
         restrict: 'E',
         scope: {
@@ -19,6 +19,13 @@ angular.module('angular-dayparts', [])
             var isDragging = false;
             var selected = [];
             var isStartSelected = false;
+
+
+            if ($scope.options.selected) {
+                $timeout(function(){
+                    repopulate($scope.options.selected);
+                }, 100);
+            }
 
 
             function mouseUp(el) {
@@ -103,6 +110,16 @@ angular.module('angular-dayparts', [])
                     column: cell[0].cellIndex, 
                     row: cell.parent()[0].rowIndex
                 };
+            }
+
+
+            function repopulate () {
+                selected = _.clone($scope.options.selected);
+                $element.find('td').each(function(i, el){
+                    if (_.contains(selected, $(el).data('time'))) {
+                        $(el).addClass(klass);
+                    }
+                });
             }
 
 
