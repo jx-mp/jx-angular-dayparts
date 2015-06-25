@@ -6,8 +6,8 @@
             <th ng-repeat="hour in hours"><span ng-show="hour !== 0">{{hour}}</span></th>
         </tr>
         <tr ng-repeat="day in days">
-            <th>{{day}}</th>
-            <td ng-repeat="hour in hours" data-time="{{day}}-{{hour}}"></td>
+            <th>{{day.name}}</th>
+            <td ng-repeat="hour in hours" data-time="{{day.name}}-{{hour}}"></td>
         </tr>
     </table>
 
