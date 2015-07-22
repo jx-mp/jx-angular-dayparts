@@ -184,16 +184,39 @@ angular.module('angular-dayparts', [])
              */
             $scope.selectDay = function(day) {
                 $element.find('table tr:eq(' + day.position + ') td').each(function(i, el) {
-                    if (!_.contains(selected, $(el).data('time'))) {
-                        $(el).addClass(klass);
-                        selected.push($(el).data('time'))
-                    } else {
-                        $(el).removeClass(klass);
-                        selected = _.without(selected, $(el).data('time'));
-                    }
+                    _toggleTime($(el));
                 });
                 onChangeCallback();
             };
+
+
+            /**
+             * Clicking on a hour will select all days at that hour
+             * @param  {int}
+             */
+            $scope.selectHour = function(hour) {
+                $scope.days.forEach(function(day, i){
+                    $element.find('table tr:eq(' + (i + 1) + ') td:eq(' + (hour - 1) + ')').each(function(i, el) {
+                        _toggleTime($(el));
+                    });
+                });
+                onChangeCallback();
+            };
+
+
+            /**
+             * Select or unselect cell and time
+             * @param  {jQuery DOM element}
+             */
+            function _toggleTime(el) {
+                if (!_.contains(selected, el.data('time'))) {
+                    el.addClass(klass);
+                    selected.push(el.data('time'))
+                } else {
+                    el.removeClass(klass);
+                    selected = _.without(selected, el.data('time'));
+                }
+            }
 
 
             /**

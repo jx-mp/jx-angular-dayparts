@@ -3,7 +3,7 @@
     <table border="0" cellspacing="0" cellpadding="0">
         <tr>
             <th></th>
-            <th ng-repeat="hour in hours"><span ng-show="hour !== 0">{{hour}}</span></th>
+            <th ng-repeat="hour in hours"><a ng-click="selectHour(hour)" ng-show="hour !== 0">{{hour}}</a></th>
         </tr>
         <tr ng-repeat="day in days">
             <th><a ng-click="selectDay(day)">{{day.name}}</a></th>
