@@ -28,7 +28,10 @@ angular.module('angular-dayparts', [])
             }
 
 
-            function mouseUp(el) {
+            /**
+             * When user stop clicking make the callback with selected elements
+             */
+            function mouseUp() {
                 if (!isDragging) {
                     return;
                 }
@@ -37,6 +40,9 @@ angular.module('angular-dayparts', [])
             }
 
 
+            /**
+             * Call 'onChange' function from passed options
+             */
             function onChangeCallback () {
                 if ($scope.options && $scope.options.onChange) {
 
@@ -63,6 +69,10 @@ angular.module('angular-dayparts', [])
             }
 
 
+            /**
+             * User start to click
+             * @param {jQuery DOM element}
+             */
             function mouseDown(el) {
                 isDragging = true;
                 setStartCell(el);
@@ -70,6 +80,10 @@ angular.module('angular-dayparts', [])
             }
 
 
+            /**
+             * User enter in a cell still triggering click
+             * @param {jQuery DOM element}
+             */
             function mouseEnter(el) {
                 if (!isDragging) {
                     return;
@@ -78,12 +92,20 @@ angular.module('angular-dayparts', [])
             }
 
 
+            /**
+             * Get the first cell clicked
+             * @param {jQuery DOM element}
+             */
             function setStartCell(el) {
                 startCell = el;
                 isStartSelected = _.contains(selected, el.data('time'));
             }
 
 
+            /**
+             * Get the last cell
+             * @param {jQuery DOM element}
+             */
             function setEndCell(el) {
                 cellsBetween(startCell, el).each(function() {
                     var el = angular.element(this);
@@ -101,6 +123,12 @@ angular.module('angular-dayparts', [])
             }
 
 
+            /**
+             * Get all the cells between first and last
+             * @param  {jQuery DOM element} start cell
+             * @param  {jQuery DOM element} end cell
+             * @return {jQuery DOM elements} cells between start and end
+             */
             function cellsBetween(start, end) {
                 var coordsStart = getCoords(start);
                 var coordsEnd = getCoords(end);
@@ -123,6 +151,11 @@ angular.module('angular-dayparts', [])
             }
 
 
+            /**
+             * Get the coordinates of a given cell
+             * @param  {jQuery DOM element}
+             * @return {object}
+             */
             function getCoords(cell) {
                 var row = cell.parents('row');
                 return {
@@ -132,6 +165,9 @@ angular.module('angular-dayparts', [])
             }
 
 
+            /**
+             * Passing 'selected' property will make repopulate table
+             */
             function repopulate () {
                 selected = _.clone($scope.options.selected);
                 $element.find('td').each(function(i, el){
@@ -142,6 +178,27 @@ angular.module('angular-dayparts', [])
             }
 
 
+            /**
+             * Clicking on a day will select all hours
+             * @param  {object} day.name, day.position
+             */
+            $scope.selectDay = function(day) {
+                $element.find('table tr:eq(' + day.position + ') td').each(function(i, el) {
+                    if (!_.contains(selected, $(el).data('time'))) {
+                        $(el).addClass(klass);
+                        selected.push($(el).data('time'))
+                    } else {
+                        $(el).removeClass(klass);
+                        selected = _.without(selected, $(el).data('time'));
+                    }
+                });
+                onChangeCallback();
+            };
+
+
+            /**
+             * Remove all selected hours
+             */
             $scope.reset = function () {
                 selected = [];
                 $element.find('td').each(function(i, el){
@@ -161,6 +218,9 @@ angular.module('angular-dayparts', [])
             }
 
 
+            /**
+             * Mouse events
+             */
             $element.delegate('td', 'mousedown', wrap(mouseDown));
             $element.delegate('td', 'mouseenter', wrap(mouseEnter));
             $document.delegate('body', 'mouseup', wrap(mouseUp));

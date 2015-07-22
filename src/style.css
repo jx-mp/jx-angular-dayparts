@@ -48,3 +48,10 @@
     float: right;
     cursor: pointer;
 }
+
+.dayparts a {
+    cursor: pointer;
+}
+.dayparts a:hover {
+    color: #333333;
+}

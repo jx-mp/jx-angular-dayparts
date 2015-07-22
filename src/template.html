@@ -6,7 +6,7 @@
             <th ng-repeat="hour in hours"><span ng-show="hour !== 0">{{hour}}</span></th>
         </tr>
         <tr ng-repeat="day in days">
-            <th>{{day.name}}</th>
+            <th><a ng-click="selectDay(day)">{{day.name}}</a></th>
             <td ng-repeat="hour in hours" data-time="{{day.name}}-{{hour}}"></td>
         </tr>
     </table>
