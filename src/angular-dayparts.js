@@ -111,13 +111,11 @@ angular.module('angular-dayparts', [])
                     var el = angular.element(this);
 
                     if (!isStartSelected) {
-                        el.addClass(klass);
                         if (!_.contains(selected, el.data('time'))) {
-                            selected.push(el.data('time'));
+                            _addCell($(el));
                         }
                     } else {
-                        el.removeClass(klass);
-                        selected = _.without(selected, el.data('time'));
+                        _removeCell(el);
                     }
                 });
             }
@@ -183,8 +181,16 @@ angular.module('angular-dayparts', [])
              * @param  {object} day.name, day.position
              */
             $scope.selectDay = function(day) {
+                var numSelectedHours = selected.filter(function(item){
+                    return item.split('-')[0] === day.name; 
+                }).length;
+
                 $element.find('table tr:eq(' + day.position + ') td').each(function(i, el) {
-                    _toggleTime($(el));
+                    if (numSelectedHours === 24) {
+                        _removeCell($(el));
+                    } else if (!_.contains(selected, $(el).data('time'))) {
+                        _addCell($(el));
+                    }
                 });
                 onChangeCallback();
             };
@@ -195,28 +201,25 @@ angular.module('angular-dayparts', [])
              * @param  {int}
              */
             $scope.selectHour = function(hour) {
+                var hour = hour - 1; // previous selected hour
+
+                var numSelectedDays = $scope.days.filter(function(item){
+                    return _.contains(selected, item.name + '-' + hour);
+                }).length;
+
                 $scope.days.forEach(function(day, i){
-                    $element.find('table tr:eq(' + (i + 1) + ') td:eq(' + (hour - 1) + ')').each(function(i, el) {
-                        _toggleTime($(el));
+                    $element.find('table tr:eq(' + (i + 1) + ') td:eq(' + hour + ')').each(function(i, el) {
+
+                        if (numSelectedDays === 7) {
+                            _removeCell($(el));
+                        } else if (!_.contains(selected, $(el).data('time'))) {
+                            _addCell($(el));
+                        }
                     });
                 });
                 onChangeCallback();
             };
 
-
-            /**
-             * Select or unselect cell and time
-             * @param  {jQuery DOM element}
-             */
-            function _toggleTime(el) {
-                if (!_.contains(selected, el.data('time'))) {
-                    el.addClass(klass);
-                    selected.push(el.data('time'))
-                } else {
-                    el.removeClass(klass);
-                    selected = _.without(selected, el.data('time'));
-                }
-            }
 
 
             /**
@@ -229,6 +232,26 @@ angular.module('angular-dayparts', [])
                 });
                 onChangeCallback();
             };
+
+
+            /**
+             * Remove css class from table and element from selected array
+             * @param  {jQuery DOM element} cell
+             */
+            function _removeCell (el) {
+                el.removeClass(klass);
+                selected = _.without(selected, el.data('time'));
+            }
+
+
+            /**
+             * Add css class to table and element to selected array
+             * @param  {jQuery DOM element} cell
+             */
+            function _addCell (el) {
+                el.addClass(klass);
+                selected.push(el.data('time'));
+            }
 
 
             function wrap(fn) {

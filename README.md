@@ -19,11 +19,13 @@ Config the directive inside the controller
 
 ```javascript
 $scope.options = {
-    reset: true,
+    reset: true, // default false
     onChange: function(selected) {
         console.log('selected: ', selected)
     },
-    selected: ['monday-14', 'monday-15']
+    selected: ['monday-14', 'monday-15'],
+    disableRowSelection: true, // default false
+    disableColumnSelection: true // default false
 };
 ```
 

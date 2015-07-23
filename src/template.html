@@ -3,10 +3,16 @@
     <table border="0" cellspacing="0" cellpadding="0">
         <tr>
             <th></th>
-            <th ng-repeat="hour in hours"><a ng-click="selectHour(hour)" ng-show="hour !== 0">{{hour}}</a></th>
+            <th ng-repeat="hour in hours">
+                <a ng-if="!options.disableColumnSelection" ng-click="selectHour(hour)" ng-show="hour !== 0">{{hour}}</a>
+                <span ng-if="options.disableColumnSelection">{{hour}}</span>
+            </th>
         </tr>
         <tr ng-repeat="day in days">
-            <th><a ng-click="selectDay(day)">{{day.name}}</a></th>
+            <th>
+                <a ng-if="!options.disableRowSelection" ng-click="selectDay(day)">{{day.name}}</a>
+                <span ng-if="options.disableRowSelection">{{day.name}}</span>
+            </th>
             <td ng-repeat="hour in hours" data-time="{{day.name}}-{{hour}}"></td>
         </tr>
     </table>
