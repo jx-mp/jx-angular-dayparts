@@ -267,8 +267,8 @@ angular.module('angular-dayparts', [])
             /**
              * Mouse events
              */
-            $element.delegate('td', 'mousedown', wrap(mouseDown));
-            $element.delegate('td', 'mouseenter', wrap(mouseEnter));
+            $element.delegate('td:not(:last-child)', 'mousedown', wrap(mouseDown));
+            $element.delegate('td:not(:last-child)', 'mouseenter', wrap(mouseEnter));
             $document.delegate('body', 'mouseup', wrap(mouseUp));
         }
     }
