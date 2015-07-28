@@ -185,7 +185,7 @@ angular.module('angular-dayparts', [])
                     return item.split('-')[0] === day.name; 
                 }).length;
 
-                $element.find('table tr:eq(' + day.position + ') td').each(function(i, el) {
+                $element.find('table tr:eq(' + day.position + ') td:not(:last-child)').each(function(i, el) {
                     if (numSelectedHours === 24) {
                         _removeCell($(el));
                     } else if (!_.contains(selected, $(el).data('time'))) {
