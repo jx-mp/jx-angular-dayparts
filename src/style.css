@@ -37,6 +37,9 @@
     padding-right: 5px;
 }
 
+.dayparts tr td:last-child {
+    border: 0;
+}
 
 .dayparts .selected {
     background: #1e4163;
@@ -47,6 +50,7 @@
     margin-top: 10px;
     float: right;
     cursor: pointer;
+    margin-right: 25px;
 }
 
 .dayparts a {
