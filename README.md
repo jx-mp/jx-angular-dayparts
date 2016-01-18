@@ -8,23 +8,42 @@ Code based on [this StackOverflow answer](http://stackoverflow.com/questions/231
 ![Sample](sample.jpg)
 
 
-Include module in your app
+Install it with Bower or npm
+
+```bash
+bower install angular-dayparts
+```
+```bash
+npm install angular-dayparts
+```
+
+
+Include the module in your app
 
 ```javascript
 angular.module('myapp', ['angular-dayparts'])
 ```
 
 
-Config the directive inside the controller
+Configure the directive inside the controller
 
 ```javascript
 $scope.options = {
+    // Reset button
     reset: true, // default false
+    
+    // Event triggered when selecting a cell
     onChange: function(selected) {
         console.log('selected: ', selected)
     },
+    
+    // Prepopulated cells
     selected: ['monday-14', 'monday-15'],
+    
+    // When true clicking on the day name it will select the entire row
     disableRowSelection: true, // default false
+    
+    // When true clicking on the hour it will select the entire columns
     disableColumnSelection: true // default false
 };
 ```
