@@ -62,7 +62,7 @@ angular.module('angular-dayparts', [])
 
                     selected = sortedSelected.map(function(item){
                         return item.day.name + '-' + item.time;
-                    })
+                    });
 
                     $scope.options.onChange(selected);
                 }
@@ -201,7 +201,7 @@ angular.module('angular-dayparts', [])
              * @param  {int}
              */
             $scope.selectHour = function(hour) {
-                var hour = hour - 1; // previous selected hour
+                hour = hour - 1; // previous selected hour
 
                 var numSelectedDays = $scope.days.filter(function(item){
                     return _.contains(selected, item.name + '-' + hour);
@@ -260,18 +260,18 @@ angular.module('angular-dayparts', [])
                     $scope.$apply(function() {
                         fn(el);
                     });
-                }
+                };
             }
 
 
             /**
              * Mouse events
              */
-            $element.delegate('td:not(:last-child)', 'mousedown', wrap(mouseDown));
-            $element.delegate('td:not(:last-child)', 'mouseenter', wrap(mouseEnter));
-            $document.delegate('body', 'mouseup', wrap(mouseUp));
+            $element.on('td:not(:last-child)', 'mousedown', wrap(mouseDown));
+            $element.on('td:not(:last-child)', 'mouseenter', wrap(mouseEnter));
+            $document.on('body', 'mouseup', wrap(mouseUp));
         }
-    }
+    };
 }]);
 
 (function(module) {
