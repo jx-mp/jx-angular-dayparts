@@ -111,8 +111,8 @@ angular.module('angular-dayparts', [])
                     var el = angular.element(this);
 
                     if (!isStartSelected) {
-                        if (!_.contains(selected, el.data('time'))) {
-                            _addCell($(el));
+                        if (!_.contains(selected, el.attr('data-time'))) {
+                            _addCell(el);
                         }
                     } else {
                         _removeCell(el);
@@ -138,7 +138,7 @@ angular.module('angular-dayparts', [])
                     column: $window.Math.max(coordsStart.column, coordsEnd.column),
                     row: $window.Math.max(coordsStart.row, coordsEnd.row),
                 };
-                return $element.find('td').filter(function() {
+                return angular.element($element[0].querySelectorAll('td')).filter(function() {
                     var el = angular.element(this);
                     var coords = getCoords(el);
                     return coords.column >= topLeft.column
@@ -168,9 +168,9 @@ angular.module('angular-dayparts', [])
              */
             function repopulate () {
                 selected = _.clone($scope.options.selected);
-                $element.find('td').each(function(i, el){
-                    if (_.contains(selected, $(el).data('time'))) {
-                        $(el).addClass(klass);
+                angular.forEach( angular.element($element[0].querySelectorAll('td')), function(el){
+                    if (_.contains(selected, angular.element(el).attr('data-time'))) {
+                        angular.element(el).addClass(klass);
                     }
                 });
             }
@@ -185,11 +185,11 @@ angular.module('angular-dayparts', [])
                     return item.split('-')[0] === day.name; 
                 }).length;
 
-                $element.find('table tr:eq(' + day.position + ') td:not(:last-child)').each(function(i, el) {
+                angular.forEach( $element.find('table tr:eq(' + day.position + ') td:not(:last-child)'), function(el) {
                     if (numSelectedHours === 24) {
-                        _removeCell($(el));
-                    } else if (!_.contains(selected, $(el).data('time'))) {
-                        _addCell($(el));
+                        _removeCell(angular.element(el));
+                    } else if (!_.contains(selected, angular.element(el).data('time'))) {
+                        _addCell(angular.element(el));
                     }
                 });
                 onChangeCallback();
@@ -208,12 +208,12 @@ angular.module('angular-dayparts', [])
                 }).length;
 
                 $scope.days.forEach(function(day, i){
-                    $element.find('table tr:eq(' + (i + 1) + ') td:eq(' + hour + ')').each(function(i, el) {
+                    angular.forEach( $element.find('table tr:eq(' + (i + 1) + ') td:eq(' + hour + ')'), function(el) {
 
                         if (numSelectedDays === 7) {
-                            _removeCell($(el));
-                        } else if (!_.contains(selected, $(el).data('time'))) {
-                            _addCell($(el));
+                            _removeCell(angular.element(el));
+                        } else if (!_.contains(selected, angular.element(el).data('time'))) {
+                            _addCell(angular.element(el));
                         }
                     });
                 });
@@ -227,8 +227,8 @@ angular.module('angular-dayparts', [])
              */
             $scope.reset = function () {
                 selected = [];
-                $element.find('td').each(function(i, el){
-                    $(el).removeClass(klass);
+                angular.forEach( angular.element($element[0].querySelectorAll('td')), function(i, el){
+                    angular.element(el).removeClass(klass);
                 });
                 onChangeCallback();
             };
@@ -267,9 +267,9 @@ angular.module('angular-dayparts', [])
             /**
              * Mouse events
              */
-            $element.on('td:not(:last-child)', 'mousedown', wrap(mouseDown));
-            $element.on('td:not(:last-child)', 'mouseenter', wrap(mouseEnter));
-            $document.on('body', 'mouseup', wrap(mouseUp));
+            $element.delegate('td:not(:last-child)', 'mousedown', wrap(mouseDown));
+            $element.delegate('td:not(:last-child)', 'mouseenter', wrap(mouseEnter));
+            $document.delegate('body', 'mouseup', wrap(mouseUp));
         }
     };
 }]);
