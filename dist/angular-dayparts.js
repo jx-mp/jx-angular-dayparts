@@ -6,7 +6,7 @@ angular.module('angular-dayparts', [])
             options: '=?'
         },
         templateUrl: 'template.html',
-        controller: function($scope, $element, $attrs) {
+        controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs) {
 
             $scope.options = $scope.options || {};
             $scope.options.reset = ($scope.options.reset === undefined) ? true : $scope.options.reset;
@@ -270,10 +270,9 @@ angular.module('angular-dayparts', [])
             $element.delegate('td:not(:last-child)', 'mousedown', wrap(mouseDown));
             $element.delegate('td:not(:last-child)', 'mouseenter', wrap(mouseEnter));
             $document.delegate('body', 'mouseup', wrap(mouseUp));
-        }
+        }]
     }
 }]);
-
 (function(module) {
 try {
   module = angular.module('angular-dayparts');
