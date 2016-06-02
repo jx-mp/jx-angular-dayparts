@@ -11,6 +11,8 @@
     angular.module('app', ['angular-dayparts']).controller('main', function($scope){
         $scope.options = {
             reset: true,
+            textReset: 'Borrar',
+            labelsDays: [{name: 'lunes', position: 1}, {name: 'martes', position: 2}, {name: 'miercoles', position: 3}, {name: 'jueves', position: 4}, {name: 'viernes', position: 5}, {name: 'sabado', position: 6}, {name: 'domingo', position: 7}],
             onChange: function(selected) {
                 console.log('selected', selected);
             },
@@ -20,6 +22,6 @@
     </script>
 </head>
 <body ng-app="app" ng-controller="main">
-    <angular-dayparts options="options"></angular-dayparts>
+    <angular-jx-dayparts options="options"></angular-jx-dayparts>
 </body>
 </html>

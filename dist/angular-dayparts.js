@@ -1,5 +1,5 @@
-angular.module('angular-dayparts', [])
-.directive('angularDayparts', ['$window', '$document', '$timeout', function ($window, $document, $timeout) {
+angular.module('angular-jx-dayparts', [])
+.directive('angularJxDayparts', ['$window', '$document', '$timeout', function ($window, $document, $timeout) {
     return {
         restrict: 'E',
         scope: {
@@ -10,8 +10,11 @@ angular.module('angular-dayparts', [])
 
             $scope.options = $scope.options || {};
             $scope.options.reset = ($scope.options.reset === undefined) ? true : $scope.options.reset;
+            $scope.text = ($scope.options.textReset === undefined) ? 'Reset' : $scope.options.textReset;
+            $scope.days = ($scope.options.labelsDays === undefined) ?
+                [{name: 'monday', position: 1}, {name: 'tuesday', position: 2}, {name: 'wednesday', position: 3}, {name: 'thursday', position: 4}, {name: 'friday', position: 5}, {name: 'saturday', position: 6}, {name: 'sunday', position: 7}]
+                : $scope.options.labelsDays;
 
-            $scope.days = [{name: 'monday', position: 1}, {name: 'tuesday', position: 2}, {name: 'wednesday', position: 3}, {name: 'thursday', position: 4}, {name: 'friday', position: 5}, {name: 'saturday', position: 6}, {name: 'sunday', position: 7}];
             $scope.hours = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24];
 
             var klass = 'selected';
@@ -300,7 +303,7 @@ module.run(['$templateCache', function($templateCache) {
     '        </tr>\n' +
     '    </table>\n' +
     '\n' +
-    '    <button type="button" ng-click="reset()" ng-if="options.reset">Reset</button>\n' +
+    '    <button type="button" ng-click="reset()" ng-if="options.reset">{{text}}</button>\n' +
     '\n' +
     '</div>');
 }]);
