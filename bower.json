@@ -1,8 +1,12 @@
 {
-  "name": "angular-dayparts",
+  "name": "jx-angular-dayparts",
   "version": "0.2.8",
   "authors": [
     "https://github.com/cichys"
+  ],
+  "main": [
+    "dist/style.css",
+    "dist/angular-dayparts.js"
   ],
   "license": "MIT",
   "ignore": [

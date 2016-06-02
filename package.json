@@ -1,19 +1,20 @@
 {
-  "name": "angular-dayparts",
+  "name": "jx-angular-dayparts",
   "version": "0.2.8",
   "description": "Angular directive for select hours in a week",
   "main": "gulpfile.js",
   "dependencies": {
     "angular": ">=1.2.0",
+    "del": "^2.2.0",
     "jquery": ">= 1.9.0",
     "underscore": ">=1.8.0"
   },
   "devDependencies": {
     "del": "^2.2.0",
     "gulp": "^3.9.1",
-    "gulp-concat": "^2.5.2",
+    "gulp-concat": "^2.6.0",
     "gulp-minify-html": "^1.0.3",
-    "gulp-ng-html2js": "^0.2.0",
+    "gulp-ng-html2js": "^0.2.2",
     "gulp-uglify": "^1.2.0"
   },
   "scripts": {

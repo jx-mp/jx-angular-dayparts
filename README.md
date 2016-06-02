@@ -1,4 +1,4 @@
-# angular dayparts
+# angular jx dayparts
 
 Angular directive for select hours in a week
 
@@ -11,17 +11,17 @@ Code based on [this StackOverflow answer](http://stackoverflow.com/questions/231
 Install it with Bower or npm
 
 ```bash
-bower install angular-dayparts
+bower install jx-angular-dayparts
 ```
 ```bash
-npm install angular-dayparts
+npm install jx-angular-dayparts
 ```
 
 
 Include the module in your app
 
 ```javascript
-angular.module('myapp', ['angular-dayparts'])
+angular.module('myapp', ['angular-jx-dayparts'])
 ```
 
 
@@ -31,7 +31,13 @@ Configure the directive inside the controller
 $scope.options = {
     // Reset button
     reset: true, // default false
-    
+
+    // text to Reset button
+    textReset: 'Restore', // default Reset
+
+    //labels to show in days column
+    labelsDays: [{name: 'lunes', position: 1}, {name: 'martes', position: 2}, {name: 'miercoles', position: 3}, {name: 'jueves', position: 4}, {name: 'viernes', position: 5}, {name: 'sabado', position: 6}, {name: 'domingo', position: 7}],
+    //default [{name: 'monday', position: 1}, {name: 'tuesday', position: 2}, {name: 'wednesday', position: 3}, {name: 'thursday', position: 4}, {name: 'friday', position: 5}, {name: 'saturday', position: 6}, {name: 'sunday', position: 7}]
     // Event triggered when selecting a cell
     onChange: function(selected) {
         console.log('selected: ', selected)
