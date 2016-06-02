@@ -1,4 +1,4 @@
-angular.module('angular-dayparts', [])
+angular.module('angular-jx-dayparts', [])
 .directive('angularJxDayparts', ['$window', '$document', '$timeout', function ($window, $document, $timeout) {
     return {
         restrict: 'E',

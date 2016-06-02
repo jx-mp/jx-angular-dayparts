@@ -21,7 +21,7 @@ npm install jx-angular-dayparts
 Include the module in your app
 
 ```javascript
-angular.module('myapp', ['angular-dayparts'])
+angular.module('myapp', ['angular-jx-dayparts'])
 ```
 
 
