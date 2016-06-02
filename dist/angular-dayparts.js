@@ -1,5 +1,5 @@
-angular.module('angular-jx-dayparts', [])
-.directive('angularJxDayparts', ['$window', '$document', '$timeout', function ($window, $document, $timeout) {
+angular.module('angular-dayparts', [])
+.directive('angularDayparts', ['$window', '$document', '$timeout', function ($window, $document, $timeout) {
     return {
         restrict: 'E',
         scope: {
@@ -273,6 +273,7 @@ angular.module('angular-jx-dayparts', [])
             $element.delegate('td:not(:last-child)', 'mousedown', wrap(mouseDown));
             $element.delegate('td:not(:last-child)', 'mouseenter', wrap(mouseEnter));
             $document.delegate('body', 'mouseup', wrap(mouseUp));
+
         }]
     }
 }]);
