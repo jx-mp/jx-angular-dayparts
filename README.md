@@ -1,4 +1,4 @@
-# angular jx dayparts
+# angular dayparts
 
 Angular directive for select hours in a week
 
