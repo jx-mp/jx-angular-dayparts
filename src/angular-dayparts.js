@@ -1,5 +1,5 @@
 angular.module('angular-dayparts', [])
-.directive('angularJxDayparts', ['$window', '$document', '$timeout', function ($window, $document, $timeout) {
+.directive('angularDayparts', ['$window', '$document', '$timeout', function ($window, $document, $timeout) {
     return {
         restrict: 'E',
         scope: {
