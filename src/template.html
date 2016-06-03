@@ -10,8 +10,8 @@
         </tr>
         <tr ng-repeat="day in days">
             <th>
-                <a ng-if="!options.disableRowSelection" ng-click="selectDay(day)">{{day.name}}</a>
-                <span ng-if="options.disableRowSelection">{{day.name}}</span>
+                <a ng-if="!options.disableRowSelection" ng-click="selectDay(day)">{{day.label}}</a>
+                <span ng-if="options.disableRowSelection">{{day.label}}</span>
             </th>
             <td ng-repeat="hour in hours" data-time="{{day.name}}-{{hour}}"></td>
         </tr>

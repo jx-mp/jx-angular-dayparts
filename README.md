@@ -35,9 +35,9 @@ $scope.options = {
     // text to Reset button
     textReset: 'Restore', // default Reset
 
-    //labels to show in days column
-    labelsDays: [{name: 'lunes', position: 1}, {name: 'martes', position: 2}, {name: 'miercoles', position: 3}, {name: 'jueves', position: 4}, {name: 'viernes', position: 5}, {name: 'sabado', position: 6}, {name: 'domingo', position: 7}],
-    //default [{name: 'monday', position: 1}, {name: 'tuesday', position: 2}, {name: 'wednesday', position: 3}, {name: 'thursday', position: 4}, {name: 'friday', position: 5}, {name: 'saturday', position: 6}, {name: 'sunday', position: 7}]
+    //labels to show in days column and genrate days
+    labelsDays: ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'],
+    //default [{name: 'monday', position: 1, label: 'monday'}, {name: 'tuesday', position: 2, label: 'tuesday'}, {name: 'wednesday', position: 3, label: 'wednesday'}, {name: 'thursday', position: 4, label: 'thursday'}, {name: 'friday', position: 5, label: 'friday'}, {name: 'saturday', position: 6, name: 'saturday'}, {name: 'sunday', position: 7, label: 'sunday'}]
     // Event triggered when selecting a cell
     onChange: function(selected) {
         console.log('selected: ', selected)
